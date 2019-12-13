@@ -1,3 +1,4 @@
+#Use forceNetwork to have more control over the appearance of the forced directed network and to plot more complicated networks.
 # Load data
 data(MisLinks)
 data(MisNodes)
