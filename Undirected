@@ -1,0 +1,4 @@
+#install.packages("ndtv")
+library(ndtv)
+data(short.stergm.sim)
+render.d3movie(short.stergm.sim, output.mode = 'htmlWidget')
