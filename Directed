@@ -1,0 +1,7 @@
+data(McFarland_cls33_10_16_96)
+slice.par<-list(start=0,end=30,interval=2.5, 
+                aggregate.dur=2.5,rule="latest")
+compute.animation(cls33_10_16_96,
+                slice.par=slice.par,animation.mode='MDSJ',verbose=FALSE)
+render.d3movie(cls33_10_16_96,
+                 displaylabels=FALSE,output.mode='htmlWidget')
