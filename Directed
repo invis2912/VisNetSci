@@ -1,3 +1,5 @@
+Reference data: http://statnet.org/movies/ndtv_vignette/cls33_10_16_96v2.mp4
+
 data(McFarland_cls33_10_16_96)
 slice.par<-list(start=0,end=30,interval=2.5, 
                 aggregate.dur=2.5,rule="latest")
