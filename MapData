@@ -13,18 +13,26 @@ library(tidyr)
 plotdata <- spread(asia, country, lifeExp)
 
 # generate graph
-h <- highchart() %>% 
-  hc_xAxis(categories = plotdata$year) %>% 
-  hc_add_series(name = "Afghanistan", 
-                data = plotdata$Afghanistan) %>% 
-  hc_add_series(name = "Bahrain", 
-                data = plotdata$Bahrain) %>%
-  hc_add_series(name = "Cambodia", 
-                data = plotdata$Cambodia) %>%
-  hc_add_series(name = "China", 
-                data = plotdata$China) %>%
-  hc_add_series(name = "India", 
-                data = plotdata$India) %>%
-  hc_add_series(name = "Iran", 
-                data = plotdata$Iran)
+h <- h %>%
+  hc_title(text = "Life Expectancy by Country",
+           margin = 20, 
+           align = "left",
+           style = list(color = "steelblue")) %>% 
+  hc_subtitle(text = "1952 to 2007",
+              align = "left",
+              style = list(color = "#2b908f", 
+                           fontWeight = "bold")) %>% 
+  hc_credits(enabled = TRUE, # add credits
+             text = "Gapminder Data",
+             href = "http://gapminder.com") %>% 
+  hc_legend(align = "left", 
+            verticalAlign = "top",
+            layout = "vertical", 
+            x = 0, 
+            y = 100) %>%
+  hc_tooltip(crosshairs = TRUE, 
+             backgroundColor = "#FCFFC5",
+             shared = TRUE, 
+             borderWidth = 4) %>% 
+  hc_exporting(enabled = TRUE)
 h
