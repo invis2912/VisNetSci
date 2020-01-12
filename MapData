@@ -1,0 +1,30 @@
+# create interactive line chart
+library(highcharter)
+
+# prepare data
+data(gapminder, package = "gapminder")
+library(dplyr)
+asia <- gapminder %>%
+  filter(continent == "Asia") %>%
+  select(year, country, lifeExp)
+
+# convert to long to wide format
+library(tidyr)
+plotdata <- spread(asia, country, lifeExp)
+
+# generate graph
+h <- highchart() %>% 
+  hc_xAxis(categories = plotdata$year) %>% 
+  hc_add_series(name = "Afghanistan", 
+                data = plotdata$Afghanistan) %>% 
+  hc_add_series(name = "Bahrain", 
+                data = plotdata$Bahrain) %>%
+  hc_add_series(name = "Cambodia", 
+                data = plotdata$Cambodia) %>%
+  hc_add_series(name = "China", 
+                data = plotdata$China) %>%
+  hc_add_series(name = "India", 
+                data = plotdata$India) %>%
+  hc_add_series(name = "Iran", 
+                data = plotdata$Iran)
+h
