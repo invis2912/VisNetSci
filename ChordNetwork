@@ -10,3 +10,4 @@ students = as.matrix(students)
 row.names(students) = c("Section A", "Section B", "Section C", "Section D")
 
 chorddiag(students, type = "bipartite", showTicks = F, groupnameFontsize = 14, groupnamePadding = 10, margin = 90)
+chorddiag(df, type = "directional", showTicks = F, groupnameFontsize = 14, groupnamePadding = 10, margin = 90)
