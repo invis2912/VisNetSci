@@ -1,0 +1,63 @@
+#UI
+library(shiny)
+library(chorddiag)
+
+shinyUI(fluidPage(
+  br(),
+  br(),
+  radioButtons('select_market',"Select Market",inline = TRUE,
+               choices = c("East","West","South","North"),
+               selected = 'East'),
+  
+  chorddiagOutput("distPlot", height = 600)
+))
+
+
+
+#Server
+
+library(shiny)
+library(chorddiag)
+
+set.seed(1)   # for reproducibility
+df_east = matrix(sample(seq(100, 5000, 50), 49), ncol = 7)
+row.names(df_east) = c("Company A" ,"Company B" ,"Company C" ,"Company D","Company E", "Company F" ,"Company G")
+colnames(df_east) = row.names(df_east)
+
+set.seed(2)  
+df_west = matrix(sample(seq(100, 5000, 50), 49), ncol = 7)
+colnames(df_west) = row.names(df_east)
+row.names(df_west) = row.names(df_east)
+
+
+set.seed(3)   
+df_south = matrix(sample(seq(100, 5000, 50), 49), ncol = 7)
+colnames(df_south) = row.names(df_east)
+row.names(df_south) = row.names(df_east)
+
+set.seed(4)  
+df_north = matrix(sample(seq(100, 5000, 50), 49), ncol = 7)
+colnames(df_north) = row.names(df_east)
+row.names(df_north) = row.names(df_east)
+
+
+shinyServer(function(input, output) {
+   
+
+  output$distPlot <- renderChorddiag({
+    
+       if(input$select_market =="East"){
+         chorddiag(df_east, showTicks = F, groupnameFontsize = 14, groupnamePadding = 10, margin = 90)
+       }else if(
+        input$select_market =="West"){
+        chorddiag(df_west, showTicks = F, groupnameFontsize = 14, groupnamePadding = 10, margin = 90)
+       } else if(
+         input$select_market =="South"){
+         chorddiag(df_south, showTicks = F, groupnameFontsize = 14, groupnamePadding = 10, margin = 90)
+       }else{
+         chorddiag(df_north, showTicks = F, groupnameFontsize = 14, groupnamePadding = 10, margin = 90)
+       }
+    
+  })
+  
+})
